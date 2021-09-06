@@ -2,17 +2,13 @@
 const {SuccessModel, ErrorModel} = require('../model/respinseModel.js');
 const {getList}  = require('../controller/blog.js')
 
-const handleBlogRoute = (req,res) => {
+const handleBlogRoute = async(req,res) => {
   const method = req.method;
   
-  if(method === 'GET' && req.path === '/api/blog/user'){
-    const author = req.queryParams.author || '';
-    const keyword = req.queryParams.keyword || '';
-    data = {
-      user: 'ppp',
-      age: 18
-    }
-    let resData = new SuccessModel(data,undefined,101);
+  if(method === 'GET' && req.path === '/api/blog/list'){
+    let data = getList();
+    let resData = new SuccessModel(data,undefined,100);
+    console.log('resData',resData);
     return resData;
   }
 

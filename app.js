@@ -20,11 +20,10 @@ const serverHandler = async(req,res) => {
 
   // 路由判断入口，获得响应数据  相当于mvc模型中的controller
   req.path = reqUrlData.path;
-  req.queryParams = reqUrlData.queryParams;
+  req.queryParams = reqUrlData.queryParams;  // 将路径的上的参数保存到req中
   getPostData(req).then(data => {  // 因为的读取post data 是异步的
     req.body = data;
     const responseData = handleBlogRoute(req,res);
-    console.log(typeof responseData)
     if(responseData){
       res.end(JSON.stringify(responseData));
       return;
