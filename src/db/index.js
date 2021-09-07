@@ -11,13 +11,14 @@ function execSql(sql){
   return new Promise((resolve,reject) => {
     connection.query(sql,(err,result) => {
       if(err){
-         return reject(err);
+         reject(err);
       }
-      return resolve(result);
+      resolve(result);
     })
   })
 }
 
 module.exports = {
-  execSql
+  execSql,
+  connection
 }
